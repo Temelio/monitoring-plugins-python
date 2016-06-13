@@ -1,17 +1,12 @@
 monitoring_plugins package
 ==========================
 
-Submodules
-----------
+Subpackages
+-----------
 
-monitoring_plugins.main module
-------------------------------
+.. toctree::
 
-.. automodule:: monitoring_plugins.main
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+    monitoring_plugins.web
 
 Module contents
 ---------------
