@@ -1,2 +1,2 @@
-git+https://github.com/Temelio/monitoring-lib-python.git@0.1.2#egg=temelio_monitoring
+git+https://github.com/Temelio/monitoring-lib-python.git@0.2.0#egg=temelio_monitoring
 nagiosplugin==1.2.4
