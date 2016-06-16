@@ -24,7 +24,7 @@ def test_call_without_args():
         subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
 
     except(subprocess.CalledProcessError) as subprocess_error:
-        exp_output = 'error: the following arguments are required: --json-url'
+        exp_output = 'error: the following arguments are required: --url'
         assert exp_output in subprocess_error.output.decode('utf-8')
         assert subprocess_error.returncode == 2
 
@@ -50,7 +50,7 @@ def test_call_without_args():
          "total_exp=1 total_tests=1")
     ),
 ])
-def test_call_with_json_url(mocker, url, response, return_code, exp_output):
+def test_call_with_url(mocker, url, response, return_code, exp_output):
     """
     Call monitoring plugin with args
     """
@@ -60,7 +60,7 @@ def test_call_with_json_url(mocker, url, response, return_code, exp_output):
         Fake argument passer
         """
         parser = mocker.MagicMock()
-        parser.json_url = 'http://foo.bar'
+        parser.url = 'http://foo.bar'
 
         return parser
 
