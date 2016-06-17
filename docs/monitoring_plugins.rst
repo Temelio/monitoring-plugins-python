@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     monitoring_plugins.web
+    monitoring_plugins.webserver
 
 Module contents
 ---------------
