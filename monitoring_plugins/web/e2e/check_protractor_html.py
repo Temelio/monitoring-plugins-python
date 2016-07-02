@@ -9,7 +9,7 @@ import nagiosplugin
 
 from temelio_monitoring.cli_parser import CommonParser
 from temelio_monitoring.cli_parser.authentication import \
-    UsernameParser, PasswordParser
+    CertificateFileParser, KeyFileParser, UsernameParser, PasswordParser
 from temelio_monitoring.cli_parser.web import UrlParser
 from temelio_monitoring.resource.json import GetValueByJsonPath
 from temelio_monitoring.context.json import CountValuesFromJSON
@@ -27,6 +27,8 @@ def parse_args():
             'e2e reporter.'),
         parents=[
             CommonParser(),
+            CertificateFileParser(),
+            KeyFileParser(),
             UsernameParser(),
             PasswordParser(),
             UrlParser(required=True)
@@ -58,7 +60,9 @@ def main():
             src=args.url,
             requests=requests,
             username=args.username,
-            password=args.password),
+            password=args.password,
+            certificate_file=args.certificate_file,
+            key_file=args.key_file),
         CountValuesFromJSON('failed_tests', critical='@1:'),
         CountValuesFromJSON('failed_exp', critical='@1:'),
         CountValuesFromJSON('total_tests'),
