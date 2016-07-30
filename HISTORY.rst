@@ -2,6 +2,12 @@
 History
 =======
 
+0.2.0 (2016-07-30)
+------------------
+
+* Add plugin : Redis scalar info testing
+* Update plugin: Add client certificate management for JSON e2e plugin
+
 0.1.0 (2016-06-17)
 ------------------
 

@@ -15,7 +15,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'temelio-monitoring==0.2.0',
+    'temelio-monitoring==0.5.1',
     'nagiosplugin==1.2.4'
 ]
 
@@ -35,7 +35,7 @@ test_requirements = [
 
 setup(
     name='monitoring_plugins',
-    version='0.1.0',
+    version='0.2.0',
     description=('Python monitoring plugins, can be used with Shinken, Nagios,'
                  'Icinga, ...'),
     long_description=readme + '\n\n' + history,
@@ -61,5 +61,8 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     test_suite='tests',
-    tests_require=test_requirements
+    tests_require=test_requirements,
+    dependency_links=[
+        'https://github.com/Temelio/monitoring-lib-python/tarball/feature/requests_client_cert#egg=temelio-monitoring-0.2.0'
+    ]
 )
