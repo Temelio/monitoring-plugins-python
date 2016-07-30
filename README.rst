@@ -1,7 +1,7 @@
 monitoring-plugins-python
 =========================
 
-.. image:: https://travis-ci.org/Temelio/monitoring-plugins-python.png?branch=master
+.. image:: https://travis-ci.org/Temelio/monitoring-plugins-python.svg?branch=master
     :target: https://travis-ci.org/Temelio/monitoring-plugins-python
 
 Python monitoring plugins, can be used with Shinken, Nagios, Icinga, ...
