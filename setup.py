@@ -15,7 +15,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'temelio-monitoring==0.5.1',
+    'temelio-monitoring==0.5.2',
     'nagiosplugin==1.2.4'
 ]
 
