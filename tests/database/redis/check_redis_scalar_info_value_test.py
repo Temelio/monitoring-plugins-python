@@ -67,62 +67,65 @@ def test_call_with_connection_error():
 
 
 @pytest.mark.parametrize(
-    'metric_name,warning,critical,return_code,expected_output', [
+    'metric_name,database_id,warning,critical,return_code,expected_output', [
         (
-            'bar', None, None, 3,
+            'bar', None, None, None, 3,
             'SCALARINFOVALUE UNKNOWN - "bar": Unknown info metric name'
         ),
         (
-            'foo', None, None, 3,
+            'foo', None, None, None, 3,
             'SCALARINFOVALUE UNKNOWN - "foo" value is not an integer or float:'
         ),
         (
-            'foobar_int', '5', '5', 0,
-            'SCALARINFOVALUE OK - foobar_int is 4 | foobar_int=4;5;5'
+            'foobar_int', 0, '5', '5', 0,
+            'SCALARINFOVALUE OK - db0_foobar_int is 4 | db0_foobar_int=4;5;5'
         ),
         (
-            'foobar_int', '3', '5', 1,
+            'foobar_int', 0, '3', '5', 1,
             (
-                'SCALARINFOVALUE WARNING - foobar_int is 4 '
-                '(outside range 0:3) | foobar_int=4;3;5'
+                'SCALARINFOVALUE WARNING - db0_foobar_int is 4 '
+                '(outside range 0:3) | db0_foobar_int=4;3;5'
             )
         ),
         (
-            'foobar_int', '2', '3', 2,
+            'foobar_int', 2, '2', '3', 2,
             (
-                'SCALARINFOVALUE CRITICAL - foobar_int is 4 '
-                '(outside range 0:3) | foobar_int=4;2;3'
+                'SCALARINFOVALUE CRITICAL - db2_foobar_int is 4 '
+                '(outside range 0:3) | db2_foobar_int=4;2;3'
             )
         ),
         (
-            'foobar_float', '5', '5', 0,
-            'SCALARINFOVALUE OK - foobar_float is 4 | foobar_float=4.0;5;5'
-        ),
-        (
-            'foobar_float', '2.0', '5', 1,
+            'foobar_float', 3, '5', '5', 0,
             (
-                'SCALARINFOVALUE WARNING - foobar_float is 4 '
-                '(outside range 0:2.0) | foobar_float=4.0;2.0;5'
+                'SCALARINFOVALUE OK - db3_foobar_float is 4 '
+                '| db3_foobar_float=4.0;5;5'
             )
         ),
         (
-            'foobar_float', '2', '3.0', 2,
+            'foobar_float', 0, '2.0', '5', 1,
             (
-                'SCALARINFOVALUE CRITICAL - foobar_float is 4 '
-                '(outside range 0:3.0) | foobar_float=4.0;2;3.0'
+                'SCALARINFOVALUE WARNING - db0_foobar_float is 4 '
+                '(outside range 0:2.0) | db0_foobar_float=4.0;2.0;5'
             )
         ),
         (
-            'hit_rate', '@0.9:', '@0.7:', 2,
+            'foobar_float', 0, '2', '3.0', 2,
             (
-                'SCALARINFOVALUE CRITICAL - hit_rate is 0.8 '
-                '(outside range @0.7:) | hit_rate=0.8;@0.9:;@0.7:'
+                'SCALARINFOVALUE CRITICAL - db0_foobar_float is 4 '
+                '(outside range 0:3.0) | db0_foobar_float=4.0;2;3.0'
+            )
+        ),
+        (
+            'hit_rate', 0, '@0.9:', '@0.7:', 2,
+            (
+                'SCALARINFOVALUE CRITICAL - db0_hit_rate is 0.8 '
+                '(outside range @0.7:) | db0_hit_rate=0.8;@0.9:;@0.7:'
             )
         ),
     ]
 )
-def test_call_with_valid_connection(mocker, metric_name, warning, critical,
-                                    return_code, expected_output):
+def test_call_with_valid_connection(mocker, database_id, metric_name, warning,
+                                    critical, return_code, expected_output):
     """
     Call monitoring plugin with args
     """
@@ -133,6 +136,7 @@ def test_call_with_valid_connection(mocker, metric_name, warning, critical,
         """
         parser = mocker.MagicMock()
         parser.critical = critical
+        parser.database_id = database_id
         parser.metric_name = metric_name
         parser.warning = warning
 
