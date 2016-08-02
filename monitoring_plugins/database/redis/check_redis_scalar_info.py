@@ -25,7 +25,7 @@ def parse_args():
         description=('Check output of Nginx stub status page.'),
         parents=[
             CommonParser(),
-            DatabaseIdParser(),
+            DatabaseIdParser(default=0),
             GenericThresholdsParser(),
             HostParser(),
             MetricNameParser(required=True),
@@ -55,7 +55,7 @@ def main():
             password=args.password,
             port=args.port),
         nagiosplugin.ScalarContext(
-            args.metric_name,
+            'db{}_{}'.format(args.database_id, args.metric_name),
             args.warning,
             args.critical),
     )
