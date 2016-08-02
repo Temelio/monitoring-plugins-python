@@ -2,6 +2,11 @@
 History
 =======
 
+0.2.1 (2016-08-02)
+------------------
+
+* Update lib version, fix redis plugin metric name
+
 0.2.0 (2016-07-30)
 ------------------
 

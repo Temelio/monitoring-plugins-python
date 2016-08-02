@@ -35,7 +35,7 @@ test_requirements = [
 
 setup(
     name='monitoring_plugins',
-    version='0.2.0',
+    version='0.2.1',
     description=('Python monitoring plugins, can be used with Shinken, Nagios,'
                  'Icinga, ...'),
     long_description=readme + '\n\n' + history,
