@@ -7,6 +7,6 @@ pytest-cov==2.5.1
 tox==2.7.0
 Sphinx==1.6.1
 pytest-mock==1.6.0
-capturer==2.1.1
+capturer==2.4
 requests-mock==1.0.0
 -r requirements.txt
